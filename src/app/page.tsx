@@ -7,7 +7,9 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>DoMindMe</h1>
+      <h1 style={{ textAlign: "center", fontFamily: "cursive", color: "#fff" }}>
+        DoMindMe
+      </h1>
       <ul>
         {todos.map((todo) => (
           <li key={String(todo.id)}>{todo.task}</li>
