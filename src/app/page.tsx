@@ -12,7 +12,14 @@ export default async function Home() {
       </h1>
       <ul>
         {todos.map((todo) => (
-          <li key={String(todo.id)}>{todo.task}</li>
+          <li key={String(todo.id)}>
+            <input
+              type="checkbox"
+              id={String(todo.id)}
+              name={String(todo.id)}
+            />
+            <label htmlFor={String(todo.id)}>{todo.task}</label>
+          </li>
         ))}
       </ul>
     </main>
