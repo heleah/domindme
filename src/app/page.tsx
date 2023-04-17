@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { use } from "react";
 
 const prisma = new PrismaClient();
 
 export default async function Home() {
-  const todos = await prisma.todos.findMany();
+  const todos = await use(prisma.todos.findMany());
 
   return (
     <main>
