@@ -1,26 +1,18 @@
+import Todo from "@/components/Todo";
 import { PrismaClient } from "@prisma/client";
-import { use } from "react";
+import "./globals.css";
 
 const prisma = new PrismaClient();
 
 export default async function Home() {
-  const todos = await use(prisma.todos.findMany());
+  const todos = await prisma.todos.findMany();
 
   return (
     <main>
-      <h1 style={{ textAlign: "center", fontFamily: "cursive", color: "#fff" }}>
-        DoMindMe
-      </h1>
+      <h1>DoMindMe</h1>
       <ul>
         {todos.map((todo) => (
-          <li key={String(todo.id)}>
-            <input
-              type="checkbox"
-              id={String(todo.id)}
-              name={String(todo.id)}
-            />
-            <label htmlFor={String(todo.id)}>{todo.task}</label>
-          </li>
+          <Todo key={todo.todo_id} todo={todo} />
         ))}
       </ul>
     </main>
