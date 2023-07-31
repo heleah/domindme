@@ -10,7 +10,7 @@ datasource db {
 model todos {
   todo_id     String   @id @unique @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   user_id     String   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  task        String?
+  task        String
   is_complete Boolean? @default(false)
   category    String?
 }

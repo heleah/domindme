@@ -1,20 +1,16 @@
-import Todo from "@/components/Todo";
 import { PrismaClient } from "@prisma/client";
 import "./globals.css";
+import TodoList from "@/components/TodoList";
 
 const prisma = new PrismaClient();
 
 export default async function Home() {
-  const todos = await prisma.todos.findMany();
+  const fetchedTodos = await prisma.todos.findMany();
 
   return (
     <main>
       <h1>DoMindMe</h1>
-      <ul>
-        {todos.map((todo) => (
-          <Todo key={todo.todo_id} todo={todo} />
-        ))}
-      </ul>
+      <TodoList fetchedTodos={fetchedTodos} />
     </main>
   );
 }

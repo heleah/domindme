@@ -1,0 +1,12 @@
+.todoItem {
+  display: flex;
+}
+
+.check {
+  margin-right: 0.6rem;
+}
+
+.check:checked + .checkText {
+  color: #5c504a;
+  text-decoration: line-through;
+}
