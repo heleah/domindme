@@ -13,10 +13,23 @@ export default async function Home() {
     await prisma.todos.create({ data: { task: newTodo } });
   }
 
+  async function updateTodo(todo: any, value: string) {
+    "use server";
+    console.log(todo);
+    await prisma.todos.update({
+      where: { todo_id: todo.todo_id },
+      data: { ...todo, task: value },
+    });
+  }
+
   return (
     <main>
       <h1>DoMindMe</h1>
-      <TodoList fetchedTodos={fetchedTodos} addTodo={addTodo} />
+      <TodoList
+        fetchedTodos={fetchedTodos}
+        addTodo={addTodo}
+        updateTodo={updateTodo}
+      />
     </main>
   );
 }
