@@ -5,7 +5,7 @@ interface InputNewProps {
 }
 
 export default function InputNew({ onAdd }: InputNewProps) {
-  async function handleKeyDown(e: any) {
+  function handleKeyDown(e: any) {
     if (e.key === "Enter") {
       onAdd(e.target.value);
       e.target.value = "";

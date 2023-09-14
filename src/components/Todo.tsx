@@ -6,34 +6,42 @@ import Input from "./Input";
 
 interface TodoProps {
   todo: Todo;
-  //updateTodo: (todo: Todo) => void;
+  onUpdate: (todo: Todo, value: string) => void;
 }
 
-export default function Todo({ todo /* , updateTodo */ }: TodoProps) {
+export default function Todo({ todo, onUpdate }: TodoProps) {
   const [isEditView, setEditView] = useState(false);
+  const [currentValue, setCurrentValue] = useState(todo.task);
   const id = todo.todo_id;
 
   function toggleEditButton() {
     setEditView(!isEditView);
   }
 
-  /*  function updateTask(e: any) {
-    todo.task = e.target.value;
-  } */
+  function updateTask(e: any) {
+    toggleEditButton();
+    if (!!isEditView) {
+      onUpdate(todo, currentValue);
+    }
+  }
 
   return (
     <li key={id} className={styles.todoItem}>
       {isEditView ? (
-        <Input todo={todo} /* updateTodo={updateTodo} */ />
+        <Input
+          todo={todo}
+          value={currentValue}
+          onValueChange={setCurrentValue}
+        />
       ) : (
         <>
           <input type="checkbox" id={id} name={id} className={styles.check} />
           <label htmlFor={id} className={styles.checkText}>
-            {todo.task}
+            {currentValue}
           </label>
         </>
       )}
-      <button onClick={toggleEditButton}>{isEditView ? "Save" : "Edit"}</button>
+      <button onClick={updateTask}>{isEditView ? "Save" : "Edit"}</button>
     </li>
   );
 }

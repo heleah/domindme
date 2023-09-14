@@ -8,19 +8,20 @@ import { Todo as TodoProps } from "@/utils/types";
 interface TodoListProps {
   fetchedTodos: TodoProps[];
   addTodo: (obj: any) => Promise<void>;
+  updateTodo: (obj: any, value: string) => Promise<void>;
 }
 
-export default function TodoList({ fetchedTodos, addTodo }: TodoListProps) {
+export default function TodoList({
+  fetchedTodos,
+  addTodo,
+  updateTodo,
+}: TodoListProps) {
   const [todos, setTodos] = useState(fetchedTodos);
-
-  /* function updateTodo(todo: TodoProps) {
-    axios.patch("/api/todos", todo);
-  } */
 
   return (
     <ul>
       {todos.map((todo) => (
-        <Todo key={todo.todo_id} todo={todo} /* updateTodo={updateTodo} */ />
+        <Todo key={todo.todo_id} todo={todo} onUpdate={updateTodo} />
       ))}
       <InputNew onAdd={addTodo} />
     </ul>
