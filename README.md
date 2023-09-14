@@ -2,9 +2,10 @@
 
 This will be a To Do app with the following features:
 
-- [ ] Write To Dos
+- [x] Write To Dos
 - [ ] Check To Dos as complete (and uncheck them)
-- [ ] Delete and edit them
+- [x] Edit them
+- [ ] Delete them
 - [ ] Categorize them / view by category
 - [ ] Log In + Authentication
 
