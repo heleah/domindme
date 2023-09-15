@@ -28,6 +28,8 @@ export default function TodoList({
           todo={todo}
           onUpdate={updateTodo}
           onDelete={deleteTodo}
+          todos={todos}
+          setTodos={setTodos}
         />
       ))}
       <InputNew onAdd={addTodo} todos={todos} setTodos={setTodos} />

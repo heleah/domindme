@@ -9,9 +9,17 @@ interface TodoProps {
   todo: Todo;
   onUpdate: (todo: Todo, value: string) => void;
   onDelete: (todo: Todo) => void;
+  todos: any;
+  setTodos: (obj: any) => void;
 }
 
-export default function Todo({ todo, onUpdate, onDelete }: TodoProps) {
+export default function Todo({
+  todo,
+  onUpdate,
+  onDelete,
+  todos,
+  setTodos,
+}: TodoProps) {
   const [isEditView, setEditView] = useState(false);
   const [currentValue, setCurrentValue] = useState(todo.task);
   const id = todo.todo_id;
@@ -27,9 +35,12 @@ export default function Todo({ todo, onUpdate, onDelete }: TodoProps) {
     }
   }
 
-  function handleDelete(todo: Todo) {
-    onDelete(todo);
-    setTimeout(() => window.location.reload(), 100);
+  function handleDelete(todoToDel: Todo) {
+    onDelete(todoToDel);
+    let remainingTodos = todos.filter(
+      (todo: Todo) => todo.todo_id != todoToDel.todo_id
+    );
+    setTodos(remainingTodos);
   }
 
   return (
