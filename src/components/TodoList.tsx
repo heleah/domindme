@@ -7,17 +7,9 @@ import { Todo as TodoProps } from "@/utils/types";
 
 interface TodoListProps {
   fetchedTodos: TodoProps[];
-  addTodo: (obj: any) => Promise<void>;
-  updateTodo: (obj: any, value: string) => Promise<void>;
-  deleteTodo: (obj: any) => Promise<void>;
 }
 
-export default function TodoList({
-  fetchedTodos,
-  addTodo,
-  updateTodo,
-  deleteTodo,
-}: TodoListProps) {
+export default function TodoList({ fetchedTodos }: TodoListProps) {
   const [todos, setTodos] = useState(fetchedTodos);
 
   return (
@@ -26,13 +18,11 @@ export default function TodoList({
         <Todo
           key={todo.todo_id}
           todo={todo}
-          onUpdate={updateTodo}
-          onDelete={deleteTodo}
           todos={todos}
           setTodos={setTodos}
         />
       ))}
-      <InputNew onAdd={addTodo} todos={todos} setTodos={setTodos} />
+      <InputNew todos={todos} setTodos={setTodos} />
     </ul>
   );
 }

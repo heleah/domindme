@@ -2,24 +2,17 @@
 
 import { useState } from "react";
 import { Todo } from "@/utils/types";
+import { updateTodo, deleteTodo } from "@/app/api/routesTodo";
 import styles from "./Todo.module.scss";
 import Input from "./Input";
 
 interface TodoProps {
   todo: Todo;
-  onUpdate: (todo: Todo, value: string) => void;
-  onDelete: (todo: Todo) => void;
   todos: any;
   setTodos: (obj: any) => void;
 }
 
-export default function Todo({
-  todo,
-  onUpdate,
-  onDelete,
-  todos,
-  setTodos,
-}: TodoProps) {
+export default function Todo({ todo, todos, setTodos }: TodoProps) {
   const [isEditView, setEditView] = useState(false);
   const [currentValue, setCurrentValue] = useState(todo.task);
   const id = todo.todo_id;
@@ -31,12 +24,12 @@ export default function Todo({
   function updateTask(e: any) {
     toggleEditButton();
     if (!!isEditView) {
-      onUpdate(todo, currentValue);
+      updateTodo(todo, currentValue);
     }
   }
 
   function handleDelete(todoToDel: Todo) {
-    onDelete(todoToDel);
+    deleteTodo(todoToDel);
     let remainingTodos = todos.filter(
       (todo: Todo) => todo.todo_id != todoToDel.todo_id
     );
