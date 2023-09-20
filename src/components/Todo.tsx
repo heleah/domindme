@@ -15,16 +15,17 @@ interface TodoProps {
 export default function Todo({ todo, todos, setTodos }: TodoProps) {
   const [isEditView, setEditView] = useState(false);
   const [currentValue, setCurrentValue] = useState(todo.task);
+  const [currentCheck, setCurrentCheck] = useState(todo.is_complete);
   const id = todo.todo_id;
 
   function toggleEditButton() {
     setEditView(!isEditView);
   }
 
-  function updateTask(e: any) {
+  function updateTask() {
     toggleEditButton();
     if (!!isEditView) {
-      updateTodo(todo, currentValue);
+      updateTodo(todo, "task", currentValue);
     }
   }
 
@@ -34,6 +35,11 @@ export default function Todo({ todo, todos, setTodos }: TodoProps) {
       (todo: Todo) => todo.todo_id != todoToDel.todo_id
     );
     setTodos(remainingTodos);
+  }
+
+  function toggleCheckbox() {
+    setCurrentCheck(!currentCheck);
+    updateTodo(todo, "is_complete", !currentCheck);
   }
 
   return (
@@ -46,7 +52,14 @@ export default function Todo({ todo, todos, setTodos }: TodoProps) {
         />
       ) : (
         <>
-          <input type="checkbox" id={id} name={id} className={styles.check} />
+          <input
+            type="checkbox"
+            id={id}
+            name={id}
+            className={styles.check}
+            checked={currentCheck || false}
+            onChange={toggleCheckbox}
+          />
           <label htmlFor={id} className={styles.checkText}>
             {currentValue}
           </label>

@@ -8,10 +8,10 @@ async function createTodo(newTodo) {
   await prisma.todos.create({ data: { task: newTodo } });
 }
 
-async function updateTodo(todo, value) {
+async function updateTodo(todo, name, value) {
   await prisma.todos.update({
     where: { todo_id: todo.todo_id },
-    data: { ...todo, task: value },
+    data: { ...todo, [name]: value },
   });
 }
 
