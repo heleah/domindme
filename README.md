@@ -3,7 +3,7 @@
 This will be a To Do app with the following features:
 
 - [x] Write To Dos
-- [ ] Check To Dos as complete (and uncheck them)
+- [x] Check To Dos as complete (and uncheck them)
 - [x] Edit them
 - [ ] Delete them
 - [ ] Categorize them / view by category

@@ -5,6 +5,7 @@ import { Todo } from "@/utils/types";
 import { updateTodo, deleteTodo } from "@/app/api/routesTodo";
 import styles from "./Todo.module.scss";
 import Input from "./Input";
+import TodoButton from "./TodoButton";
 
 interface TodoProps {
   todo: Todo;
@@ -65,8 +66,10 @@ export default function Todo({ todo, todos, setTodos }: TodoProps) {
           </label>
         </>
       )}
-      <button onClick={updateTask}>{isEditView ? "Save" : "Edit"}</button>
-      <button onClick={() => handleDelete(todo)}>Delete</button>
+      <TodoButton handleClick={updateTask}>
+        {isEditView ? "Save" : "Edit"}
+      </TodoButton>
+      <TodoButton handleClick={() => handleDelete(todo)}>Delete</TodoButton>
     </li>
   );
 }

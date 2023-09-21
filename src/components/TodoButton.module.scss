@@ -1,0 +1,12 @@
+.todoButton {
+  margin-left: 1rem;
+  padding: 0.2rem;
+  background: rgb(255, 165, 0);
+  border-radius: 5px;
+  border: 2px dotted #fff;
+  cursor: pointer;
+}
+
+.todoButton:hover {
+  background: rgb(255, 200, 99);
+}
